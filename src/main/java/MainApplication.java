@@ -1,8 +1,11 @@
+import api.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import resources.HelloWorldResource;
+import resources.UserResource;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -13,10 +16,10 @@ public class MainApplication extends Application<BackendWebshopConfiguration> {
         new MainApplication().run(args);
     }
 
-    @Override
-    public String getName() {
-        return "hello-world";
-    }
+//    @Override
+//    public String getName() {
+//        return "hello-world";
+//    }
 
     @Override
     public void initialize(Bootstrap<BackendWebshopConfiguration> bootstrap) {
@@ -30,12 +33,18 @@ public class MainApplication extends Application<BackendWebshopConfiguration> {
             backendWebshopConfiguration.getDefaultName()
         );
 
+        final UserResource userResource = new UserResource(
+            backendWebshopConfiguration.getUserEmail(),
+            backendWebshopConfiguration.getUserPassword()
+        );
+
         final HelloWorldResource resources[] = {
           resource,
           resource
         };
 
         environment.jersey().register(resource);
+        environment.jersey().register(userResource);
 
         // Enable CORS headers
         final FilterRegistration.Dynamic cors =

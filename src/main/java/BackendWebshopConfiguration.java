@@ -13,9 +13,25 @@ public class BackendWebshopConfiguration extends Configuration {
     @NotEmpty
     private String description = "Description";
 
+    @NotEmpty
+    private String userEmail = "Stranger";
+
+    @NotEmpty
+    private String userPassword = "Description";
+
     @JsonProperty
     public String getTemplate() {
         return template;
+    }
+
+    @JsonProperty
+    public String getUserEmail() {
+        return this.userEmail;
+    }
+
+    @JsonProperty
+    public String getUserPassword() {
+        return this.userPassword;
     }
 
     @JsonProperty

@@ -2,6 +2,7 @@ package resources;
 
 import api.Saying;
 import com.codahale.metrics.annotation.Timed;
+import io.dropwizard.jersey.params.LongParam;
 import jdk.jfr.Event;
 
 import javax.ws.rs.*;
@@ -34,30 +35,47 @@ public class HelloWorldResource {
 
         final Saying sayings[] = {
                 new Saying(counter.incrementAndGet(), value, desc),
-                new Saying(counter.incrementAndGet(), "dummy content", "Dummy desc")
+                new Saying(counter.incrementAndGet(), "dummy content", "Dummy desc"),
+                new Saying(counter.incrementAndGet(), "dummy content 2", "Dummy desc 2"),
+                new Saying(counter.incrementAndGet(), "dummy content 3", "Dummy desc 3"),
+                new Saying(counter.incrementAndGet(), "dummy content 4", "Dummy desc 4"),
         };
 
         return sayings;
     }
 
-//    @POST
-//    public Response add(/*@PathParam("user") OptionalLong userId,
-//                        @NotNull @Valid Notification notification*/) {
-//        // final long id = store.add(userId.get(), notification);
-//        // return Response.created(UriBuilder.fromResource(NotificationResource.class)
-//                // .build(userId.get(), id))
-//                // .build();
-//        return Response.created(UriBuilder.fromResource(HelloWorldResource.class))
-//                .build();
-//    }
-
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createSomething(@Context HttpHeaders httpHeaders, Saying source) {
-        // System.out.println(source.description);
         return Response.ok(source).build();
+    }
 
-        // return new Saying(1, source.template, "desc");
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteAll(@Context HttpHeaders httpHeaders, Saying source) {
+        System.out.println("Delete all!");
+        source = new Saying(1, "name", "desc");
+        return Response.ok(source).build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteOne(@PathParam("id") String id, @Context HttpHeaders httpHeaders, Saying source) {
+        System.out.println("Delete one with id of: " + id);
+        source = new Saying(1, "name", "desc");
+        return Response.ok(source).build();
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateOne(@Context HttpHeaders httpHeaders, Saying source) {
+        System.out.println(httpHeaders.getRequestHeaders().toString());
+        System.out.println(source.getName());
+        return Response.ok(source).build();
     }
 }
