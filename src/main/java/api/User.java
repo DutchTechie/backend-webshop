@@ -3,24 +3,39 @@ package api;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
-    private String userEmail = "email";
-    private String userPassword = "pass";
+    private long id = -1;
+    private String email = "";
+    private String password = "";
+    private boolean isAdmin = false;
 
-    public User() {}
+    public User() {
+        // Jackson deserialization
+    }
 
-    public User(String email, String password) {
-        this.userEmail = email;
-        this.userPassword = password;
+    public User(long id, String email, String password, boolean isAdmin) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     @JsonProperty
-    public String getUserEmail() {
-        return this.userEmail;
+    public long getId() {
+        return this.id;
     }
 
     @JsonProperty
-    public String getUserPassword() {
-        return this.userPassword;
+    public String getEmail() {
+        return this.email;
     }
 
+    @JsonProperty
+    public String getPassword() {
+        return this.password;
+    }
+
+    @JsonProperty
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 }

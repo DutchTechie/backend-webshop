@@ -1,10 +1,8 @@
 import api.User;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Application;
-import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
-import resources.HelloWorldResource;
+import resources.ProductResource;
 import resources.UserResource;
 
 import javax.servlet.DispatcherType;
@@ -16,46 +14,20 @@ public class MainApplication extends Application<BackendWebshopConfiguration> {
         new MainApplication().run(args);
     }
 
-//    @Override
-//    public String getName() {
-//        return "hello-world";
-//    }
-
     @Override
-    public void initialize(Bootstrap<BackendWebshopConfiguration> bootstrap) {
-        // nothing to do yet
+    public void run(BackendWebshopConfiguration backendWebshopConfiguration, Environment environment) throws Exception {
+        this.enableCorsHeaders(environment);
+        final ProductResource productResource = new ProductResource();
+        final UserResource userResource = new UserResource();
+        environment.jersey().register(productResource);
+        environment.jersey().register(userResource);
     }
 
-    public void run(BackendWebshopConfiguration backendWebshopConfiguration, Environment environment) throws Exception {
-        final HelloWorldResource resource = new HelloWorldResource(
-            backendWebshopConfiguration.getTemplate(),
-            backendWebshopConfiguration.getDescription(),
-            backendWebshopConfiguration.getDefaultName()
-        );
-
-        final UserResource userResource = new UserResource(
-            backendWebshopConfiguration.getUserEmail(),
-            backendWebshopConfiguration.getUserPassword()
-        );
-
-        final HelloWorldResource resources[] = {
-          resource,
-          resource
-        };
-
-        environment.jersey().register(resource);
-        environment.jersey().register(userResource);
-
-        // Enable CORS headers
-        final FilterRegistration.Dynamic cors =
-                environment.servlets().addFilter("CORS", CrossOriginFilter.class);
-
-        // Configure CORS parameters
+    private void enableCorsHeaders(Environment environment) {
+        final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
         cors.setInitParameter("allowedOrigins", "*");
         cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin");
         cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
-
-        // Add URL mapping
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
     }
 }
