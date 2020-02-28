@@ -3,10 +3,12 @@ package api;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Product {
-    private final String name, description, imagePath;
-    private long id;
+    private String name, description, imagePath;
+    public long id;
     private double price;
     private int stock;
+
+    public Product() {}
 
     public Product(
             long id,
