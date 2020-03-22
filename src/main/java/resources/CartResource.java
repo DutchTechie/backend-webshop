@@ -37,12 +37,13 @@ public class CartResource {
                 }
                 cartToReturn = this.cart.get(i);
                 found = true;
-                break;
+                break;f
             }
         }
         if (found == false) {
             this.cart.add(cart);
         }
+        System.out.println("Successfully added or updated a cart");
         return Response.ok(cartToReturn).build();
     }
 
@@ -85,13 +86,24 @@ public class CartResource {
         }
     }
 
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("{userId}")
+    public void deleteAllShoppingCartItems(@PathParam("userId") long userId) {
+        System.out.println("Delete all carts belonging to user!");
+
+
+        cart.removeIf( item -> item.getUserId() == userId);
+    }
+
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{userId}/{productId}")
     public Response updateCart(@PathParam("userId") long userId, @PathParam("productId") long productId, Cart cart) {
         System.out.println("Update resource!");
-        for (int i = 0 ; i < this.cart.size(); i++) {//            }
+        for (int i = 0 ; i < this.cart.size(); i++) {
             if (this.cart.get(i).getProductId() == productId) {
                 if (this.cart.get(i).getUserId() == userId) {
                     this.cart.remove(i);

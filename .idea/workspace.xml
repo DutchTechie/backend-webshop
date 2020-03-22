@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d653bb01-c46a-48ba-a2e2-590495a4252b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resources/CartResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/CartResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resources/ProductResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/ProductResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resources/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/UserResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,22 +110,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1582749753107" />
-    <state width="1877" height="254" key="GridCell.Tab.0.bottom" timestamp="1582915747075">
+    <state width="1877" height="195" key="GridCell.Tab.0.bottom" timestamp="1584863948862">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1582915747075" />
-    <state width="1877" height="254" key="GridCell.Tab.0.center" timestamp="1582915747074">
+    <state width="1877" height="195" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1584863948862" />
+    <state width="1877" height="195" key="GridCell.Tab.0.center" timestamp="1584863948862">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="254" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1582915747074" />
-    <state width="1877" height="254" key="GridCell.Tab.0.left" timestamp="1582915747073">
+    <state width="1877" height="195" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1584863948862" />
+    <state width="1877" height="195" key="GridCell.Tab.0.left" timestamp="1584863948861">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="254" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1582915747073" />
-    <state width="1877" height="254" key="GridCell.Tab.0.right" timestamp="1582915747074">
+    <state width="1877" height="195" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1584863948861" />
+    <state width="1877" height="195" key="GridCell.Tab.0.right" timestamp="1584863948862">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="254" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1582915747074" />
+    <state width="1877" height="195" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1584863948862" />
     <state x="490" y="180" key="Maven.ArtifactSearchDialog" timestamp="1582227157091">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -131,10 +134,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="445" y="33" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1582749524772" />
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1582913373265">
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1583504834689">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1582913373265" />
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1583504834689" />
     <state x="224" y="159" key="new project wizard" timestamp="1582749727436">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

@@ -40,7 +40,7 @@ public class UserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/signUp/{email}/{password}")
+    @Path("/signup/{email}/{password}")
     public Response signUp(User user, @PathParam("email") String email, @PathParam("password") String password) {
         for (int i = 0; i < this.users.size(); i++) {
             if (users.get(i).getEmail().equals(email)) {
