@@ -52,21 +52,19 @@ public class CartResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{userId}")
     public ShoppingCart [] getShoppingCart(@PathParam("userId") long userId) {
-        System.out.println(userId);
-        ShoppingCart [] shoppingCarts;
-        shoppingCarts = new ShoppingCart[this.cart.size()];
+        ArrayList shoppingCart = new ArrayList<ShoppingCart>();
 
-        for (int i = 0 ; i < shoppingCarts.length; i++) {
+        for (int i = 0 ; i < this.cart.size(); i++) {
             for (int j = 0 ; j < this.product.size(); j++) {
-                if (this.cart.get(i).getProductId() == this.product.get(j).getId()) {
+                if (this.cart.get(i).getProductId() == this.product.get(j).getId() ) {
                     if (this.cart.get(i).getUserId() == userId) {
-                        shoppingCarts[i] = new ShoppingCart(this.product.get(j), this.cart.get(i));
+                        shoppingCart.add(new ShoppingCart(this.product.get(j), this.cart.get(i)));
                     }
                 }
             }
         }
 
-        return shoppingCarts;
+        return (ShoppingCart[]) shoppingCart.toArray(new ShoppingCart[shoppingCart.size()]);
     }
 
     @DELETE
