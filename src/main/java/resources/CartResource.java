@@ -59,7 +59,9 @@ public class CartResource {
         for (int i = 0 ; i < shoppingCarts.length; i++) {
             for (int j = 0 ; j < this.product.size(); j++) {
                 if (this.cart.get(i).getProductId() == this.product.get(j).getId()) {
-                    shoppingCarts[i] = new ShoppingCart(this.product.get(j), this.cart.get(i));
+                    if (this.cart.get(i).getUserId() == userId) {
+                        shoppingCarts[i] = new ShoppingCart(this.product.get(j), this.cart.get(i));
+                    }
                 }
             }
         }
