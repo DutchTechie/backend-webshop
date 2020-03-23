@@ -21,6 +21,11 @@ public class ProductResource {
     }
 
     private void fetchAllProductsOnce() {
+        try {
+            Thread.sleep(1 * 1000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
         this.products = new ArrayList<Product>();
         this.products.add(
                 new Product(

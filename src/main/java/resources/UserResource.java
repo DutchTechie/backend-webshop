@@ -3,6 +3,7 @@ package resources;
 import api.Product;
 import api.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.ImmutableMap;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -23,19 +24,6 @@ public class UserResource {
         this.users.add(new User(0, "rkock127@gmail.com", "secret", true));
         this.counter = new AtomicLong();
     }
-
-//    @POST
-//    @Path("/signUp/{email}/{password}")
-//    public User signUp(@PathParam("email") String email, @PathParam("password") String password) {
-//        for (int i = 0; i < this.users.size(); i++) {
-//            if (users.get(i).getEmail() == email) {
-//                return null;
-//            }
-//        }
-//        User newUser = new User(this.counter.incrementAndGet(), email, password,false);
-//        this.users[this.users.length] = newUser;
-//        return newUser;
-//    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -59,13 +47,28 @@ public class UserResource {
     @POST
     @Path("/login/{email}/{password}")
     public Response login(User user, @PathParam("email") String email, @PathParam("password") String password) {
+        try {
+            Thread.sleep(1 * 1000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
         for (int i = 0; i < this.users.size(); i++) {
             if (users.get(i).getEmail().equals(email)) {
                 if (users.get(i).getPassword().equals(password)) {
                     return Response.ok(users.get(i)).build();
+                } else {
+                    return Response.status(Response.Status.NOT_FOUND)
+                            .header(HttpHeaders.WWW_AUTHENTICATE, user)
+                            .type(MediaType.APPLICATION_JSON_TYPE)
+                            .entity(ImmutableMap.of("error","Your password is incorrect."))
+                            .build();
                 }
             }
         }
-        return null;
+        return Response.status(Response.Status.NOT_FOUND)
+                .header(HttpHeaders.WWW_AUTHENTICATE, user)
+                .type(MediaType.APPLICATION_JSON_TYPE)
+                .entity(ImmutableMap.of("error","We cannot find an account with that email address."))
+                .build();
     }
 }
